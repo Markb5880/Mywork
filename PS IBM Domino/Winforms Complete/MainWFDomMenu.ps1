@@ -5,7 +5,7 @@ $Global:Form
 
 function MainWFDomMenu {
 cls
-    
+# test    
     # Create a New Form
     $form=New-Object System.Windows.Forms.Form
     $form.topmost=$true
