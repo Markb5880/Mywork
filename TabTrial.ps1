@@ -12,34 +12,33 @@ cls
     $form.Text="This is my test text form."
     $form.Location.X=2048
     $form.Location.Y=1024
-    $form.Size=New-Object System.Drawing.Size(1024,640)
-    
+    $form.Size=New-Object System.Drawing.Size(483,370)
+  
+    # TabControl Setup
     $tabcontrol=New-Object System.Windows.Forms.tabcontrol
-    $tabcontrol.width=768
-    $tabcontrol.height=512
-    
+    $tabcontrol.width=440
+    $tabcontrol.height=325
     $FontFace = New-Object System.Drawing.Font(
     "Comic Sans MS",10,[System.Drawing.FontStyle]::Regular)
     $tabcontrol.Font=$FontFace
-# Draw a Textbox
+
+    # Draw a Textbox
     $tabpage1=New-Object System.Windows.Forms.tabpage
     $tabpage1.name="Tab1"
-    $tabpage1.Text="Tab1"
+    $tabpage1.Text="User Group Viewer"
     $Tabpage1.backcolor="Green"
-    $tabpage1.width=700
-    $tabpage1.height=700
+    $tabpage1.width=480
+    $tabpage1.height=480
 
-    #Get-ADPrincipalGroupMembership mbaker | select name
- 
     $dd=$null
     
     cls
     
-    # Domain Textbox - top left
+    # Domain Textbox - top right
         $TextBox6 = New-Object System.Windows.Forms.TextBox 
         $TextBox6.Multiline = $false;
-        $TextBox6.Location = New-Object System.Drawing.Size(320,5) 
-        $TextBox6.Size = New-Object System.Drawing.Size(220,16)
+        $TextBox6.Location = New-Object System.Drawing.Size(180,5) 
+        $TextBox6.Size = New-Object System.Drawing.Size(210,16)
         $Font = New-Object System.Drawing.Font("Tahoma",10,[System.Drawing.FontStyle]::regular)
         $TextBox6.Font=$Font
         $gdm=get-addomain | select dnsroot
@@ -52,8 +51,8 @@ Current Domain: $gdm1
 
     # Scrollable User Selection Textbox - Mid Right
         $TextBox2 = New-Object System.Windows.Forms.Listbox 
-        $TextBox2.Location = New-Object System.Drawing.Size(10,40) 
-        $TextBox2.Size = New-Object System.Drawing.Size(320,120)
+        $TextBox2.Location = New-Object System.Drawing.Size(5,40) 
+        $TextBox2.Size = New-Object System.Drawing.Size(170,120)
         $TextBox2.Height = 90
     
     # Scrollable Group Output Textbox - Bottom
@@ -61,24 +60,33 @@ Current Domain: $gdm1
         $textbox3.multiline=$true
         $textbox3.AutoSize=$false
         $textbox3.scrollbars='vertical'
-        $TextBox3.Location = New-Object System.Drawing.Size(10,180) 
-        $TextBox3.Size = New-Object System.Drawing.Size(320,120)
-        $TextBox3.Height = 112
-    
-    # Draw Chosen Database Text Label
+        $TextBox3.Location = New-Object System.Drawing.Size(5,150) 
+        $TextBox3.Size = New-Object System.Drawing.Size(320,112)
+        
+    # Draw Chosen Username Text Label
         $textlbl1=New-Object System.Windows.Forms.label
-        $textlbl1.Location=New-Object System.Drawing.Size(5,139)
+        $textlbl1.Location=New-Object System.Drawing.Size(180,37)
         $textlbl1.backcolor="Transparent"
         $textlbl1.size=New-Object System.Drawing.Size(72,18)
         $FontFace = New-Object System.Drawing.Font(
-        "Comic Sans MS",12,[System.Drawing.FontStyle]::Regular)
+        "Comic Sans MS",10,[System.Drawing.FontStyle]::Regular)
         $textlbl1.Font=$FontFace
         $textlbl1.text="Username:"
+
+     # Draw Chosen 'Group Membership' Text Label
+         $textlbl2=New-Object System.Windows.Forms.label
+         $textlbl2.Location=New-Object System.Drawing.Size(5,130)
+         $textlbl2.backcolor="Transparent"
+         $textlbl2.size=New-Object System.Drawing.Size(144,18)
+         $FontFace = New-Object System.Drawing.Font(
+         "Comic Sans MS",10,[System.Drawing.FontStyle]::Regular)
+         $textlbl2.Font=$FontFace
+         $textlbl2.text="Group Membership:"
         
-    # Draw Chosen Database Textbox
+    # Draw Username Textbox
         $textbox1a=New-Object System.Windows.Forms.textbox
-        $textbox1a.Location=New-Object System.Drawing.Size(81,136)
-        $textbox1a.size=New-Object System.Drawing.Size(250,64)
+        $textbox1a.Location=New-Object System.Drawing.Size(180,56)
+        $textbox1a.size=New-Object System.Drawing.Size(210,64)
         $FontFace = New-Object System.Drawing.Font(
         "Comic Sans MS",10,[System.Drawing.FontStyle]::Regular)
         $textbox1a.Font=$FontFace
@@ -96,8 +104,7 @@ Current Domain: $gdm1
         $usrcnt=$Textbox2.items.Count
     
         $body5 = @"
-        Current AD User Count:
-        $usrcnt
+Current AD User Count: $usrcnt
 "@
         $Textbox5.text=$body5
             
@@ -119,18 +126,9 @@ Current Domain: $gdm1
         }
         $zz=$dname[$textbox2.SelectedIndex]
         $textbox1a.Text="$zz"
-        
         $textbox3.Refresh()
-        
-        
+            
         })
-    # Exit Button    
-        $Exitgbutton=New-Object System.Windows.Forms.Button
-        $Exitgbutton.Location = New-Object System.Drawing.Size(295,300)
-        $Exitgbutton.Size = New-Object System.Drawing.Size(100,32)
-        $Exitgbutton.Text = "Exit"
-        $Exitgbutton.add_click({$Form.Close()})
-    
           
     #}
     $tabpage1.Controls.Add($textbox6)
@@ -139,6 +137,7 @@ Current Domain: $gdm1
     $tabpage1.Controls.Add($textlbl1)
     $tabpage1.Controls.Add($textbox1a)
     $tabpage1.Controls.Add($textbox5)
+    $tabpage1.controls.add($textlbl2)
 
     $tabpage2=New-Object System.Windows.Forms.tabpage
     $tabpage2.name="Tab2"
@@ -161,8 +160,8 @@ Current Domain: $gdm1
 # Add an 'EXIT' Button
       
     $Exitbutton=New-Object System.Windows.Forms.Button
-    $Exitbutton.Location = New-Object System.Drawing.Size(350,400)
-    $Exitbutton.Size = New-Object System.Drawing.Size(100,100)
+    $Exitbutton.Location = New-Object System.Drawing.Size(350,200)
+    $Exitbutton.Size = New-Object System.Drawing.Size(50,75)
     $Exitbutton.Backcolor = "LightGreen"
 
     $Exitbutton.Forecolor = "purple"
