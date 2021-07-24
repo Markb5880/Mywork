@@ -155,23 +155,9 @@ Current AD User Count: $usrcnt
     $FontFace = New-Object System.Drawing.Font(
     "Comic Sans MS",10,[System.Drawing.FontStyle]::Regular)
     $textlbl2.Font=$FontFace
-    #$textlbl2.text="WORLD"
-
-    
 
     Clear-Host
 
-<#   Create a New Form
-    $form=New-Object System.Windows.Forms.Form
-    $form.topmost=$true
-    $form.Text="Add/Remove AD User to And From Groups"
-    $form.Location.x=400
-    $form.Location.Y=400
-    $form.Size=New-Object System.Drawing.Size(665,330)
-#   Now Lock the form so it cannot be re-sized.
-    $Form.MaximumSize=New-Object System.Drawing.Size(665,330)
-    $Form.MinimumSize=New-Object System.Drawing.Size(665,330)
-#>    
 #   Group Text Label
     $Grouplbl1=New-Object System.Windows.Forms.label
     $Grouplbl1.Location=New-Object System.Drawing.Size(5,2)
@@ -388,7 +374,7 @@ for ($i = 0; $i -lt $Script:UserTBox.Items.Count;$i++)
     $tabpage2.Controls.Add($ChangeDBSizebutton)
     $tabpage2.Controls.Add($ChangeDBSizebutton1)
     $tabpage2.Controls.Add($ChangeDBSizebutton2)
-    $Form.Controls.Add($Exitbutton)
+    #$Form.Controls.Add($Exitbutton)
     $form.Controls.Add($tabcontrol)
 
     $form.ShowDialog()
