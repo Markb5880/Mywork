@@ -1,6 +1,7 @@
 Add-Type -AssemblyName "System.Windows.Forms"
 Add-Type -AssemblyName "System.Drawing"
 [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing.graphics")
+Add-Type -AssemblyName PresentationFramework
 $Global:Form
 
 function TabFormTest {
