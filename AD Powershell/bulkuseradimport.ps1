@@ -25,7 +25,7 @@ function BulkADUserImport {
             Displayname=$User.Displayname
             country=$User.country
             path=$User.DistinguishedName
-       #     Manager=$User.Manager
+       #     Manager=$User.Manager 
             Initials=$User.Initials   
             StreetAddress=$User.StreetAddress 
             OfficePhone=$User.'Telephone-Number' 
