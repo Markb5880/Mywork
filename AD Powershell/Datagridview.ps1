@@ -27,7 +27,6 @@ $Button.Text = "Show Dialog Box"
 $Button.Add_Click({$dept="execs"})
 $Form.Controls.Add($Button)
 
-
 $row1 = Get-ADUser -Filter * -Properties * -SearchBase 'ou=$($dept),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local' | select name,lastlogondate,whencreated,passwordlastset,enabled
 foreach ($row in $row1)
 {    
