@@ -245,4 +245,4 @@ cls
 
 # Now call the function
 }
-Makeform
+MakeNewform
