@@ -8,7 +8,7 @@ Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Collections
 
 $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | Select-Object cn,company,department,lastlogondate,passwordlastset,enabled
-
+[string]$userouname="accounts","execs"
 $form = New-Object System.Windows.Forms.Form
 $form.Size = New-Object System.Drawing.Size(650,550)
 $form.Text='User Info'
