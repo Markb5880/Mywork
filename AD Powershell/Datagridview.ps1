@@ -39,10 +39,10 @@ $Button.Size = New-Object System.Drawing.Size(70,32)
 $Button.Text = "Accounts"
 $Button.Add_Click({
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=Accounts,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
+    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=Accounts,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name
     $tableData = New-Object System.Collections.ArrayList
     $tableData.AddRange($row1)
-	$dataGridView.DataSource=$tableData})
+    $dataGridView.DataSource=$tableData})
 
 $Button1 = New-Object System.Windows.Forms.Button
 $Button1.Location = New-Object System.Drawing.Size(70,450)
@@ -50,7 +50,7 @@ $Button1.Size = New-Object System.Drawing.Size(73,32)
 $Button1.Text = "Engineering"
 $Button1.Add_Click({
 	$dataGridView.DataSource = $null
-	$row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=engineering,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
+	$row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=engineering,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name
 	$tableData = New-Object System.Collections.ArrayList
 	$tableData.AddRange($row1)
 	$dataGridView.DataSource=$tableData})
