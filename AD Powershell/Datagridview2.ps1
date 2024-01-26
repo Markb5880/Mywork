@@ -4,6 +4,14 @@ function test1 {
 function Allrows {
     $script:row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$ou,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name    
 }
+function SetupDataWithIndex {
+    $dataGridView.DataSource = $null
+    $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($script:accou[$script:i])
+    Allrows
+    $tableData.AddRange($row1)
+    $dataGridView.DataSource=$tableData    
+}
 function test {
 Add-Type -AssemblyName "System.Windows.Forms"
 Add-Type -AssemblyName "System.Drawing"
@@ -34,7 +42,7 @@ $dataGridView = New-Object System.Windows.Forms.DataGridView -Property @{
     ColumnHeadersHeightSizeMode = 'AutoSize'
 	RowHeadersVisible=$True
 }
-$accou=@(
+$script:accou=@(
     'Accounts'
     'engineering'
     'execs'
@@ -53,156 +61,108 @@ $Button.Location = New-Object System.Drawing.Size(70,415)
 $Button.Size = New-Object System.Drawing.Size(70,32)
 $Button.Text = "Accounts"
 $Button.Add_Click({
-    $i=0
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=0
+    SetupDataWithIndex
+    })
 
 $Button1 = New-Object System.Windows.Forms.Button
 $Button1.Location = New-Object System.Drawing.Size(70,450)
 $Button1.Size = New-Object System.Drawing.Size(73,32)
 $Button1.Text = "Engineering"
 $Button1.Add_Click({
-    $i=1
-	$dataGridView.DataSource = $null
-	$tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-	$tableData.AddRange($row1)
-	$dataGridView.DataSource=$tableData})
+    $script:i=1
+    SetupDataWithIndex	
+})
 
 $Button2 = New-Object System.Windows.Forms.Button
 $Button2.Location = New-Object System.Drawing.Size(135,415)
 $Button2.Size = New-Object System.Drawing.Size(70,32)
 $Button2.Text = "Execs"
 $Button2.Add_Click({
-    $i=2
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=2
+    SetupDataWithIndex    
+})
 
 $Button3 = New-Object System.Windows.Forms.Button
 $Button3.Location = New-Object System.Drawing.Size(144,450)
 $Button3.Size = New-Object System.Drawing.Size(70,32)
 $Button3.Text = "Facilities"
 $Button3.Add_Click({
-    $i=3
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=3
+    SetupDataWithIndex
+})
 
 $Button4 = New-Object System.Windows.Forms.Button
 $Button4.Location = New-Object System.Drawing.Size(206,415)
 $Button4.Size = New-Object System.Drawing.Size(70,32)
 $Button4.Text = "HR"
 $Button4.Add_Click({
-    $i=4
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=4
+    SetupDataWithIndex
+})
 
 $Button5 = New-Object System.Windows.Forms.Button
 $Button5.Location = New-Object System.Drawing.Size(215,450)
 $Button5.Size = New-Object System.Drawing.Size(60,32)
 $Button5.Text = "IT"
 $Button5.Add_Click({
-    $i=5
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=5
+    SetupDataWithIndex
+})
 
 $Button6 = New-Object System.Windows.Forms.Button
 $Button6.Location = New-Object System.Drawing.Size(277,415)
 $Button6.Size = New-Object System.Drawing.Size(70,32)
 $Button6.Text = "MS"
 $Button6.Add_Click({
-    $i=6
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=6
+    SetupDataWithIndex
+})
 
 $Button7 = New-Object System.Windows.Forms.Button
 $Button7.Location = New-Object System.Drawing.Size(277,450)
 $Button7.Size = New-Object System.Drawing.Size(71,32)
 $Button7.Text = "New Business"
 $Button7.Add_Click({
-    $i=7
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=7
+    SetupDataWithIndex
+})
 
 $Button8 = New-Object System.Windows.Forms.Button
 $Button8.Location = New-Object System.Drawing.Size(349,415)
 $Button8.Size = New-Object System.Drawing.Size(81,32)
 $Button8.Text = "Procurement"
 $Button8.Add_Click({
-    $i=8
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=8
+    SetupDataWithIndex
+})
 
 $Button9 = New-Object System.Windows.Forms.Button
 $Button9.Location = New-Object System.Drawing.Size(425,415)
 $Button9.Size = New-Object System.Drawing.Size(81,32)
 $Button9.Text = "Production"
 $Button9.Add_Click({
-    $i=9
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=9
+    SetupDataWithIndex
+})
 
 $ButtonA = New-Object System.Windows.Forms.Button
 $ButtonA.Location = New-Object System.Drawing.Size(349,450)
 $ButtonA.Size = New-Object System.Drawing.Size(81,32)
 $ButtonA.Text = "QA"
 $ButtonA.Add_Click({
-    $i=10
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=10
+    SetupDataWithIndex
+})
 
 $ButtonB = New-Object System.Windows.Forms.Button
 $ButtonB.Location = New-Object System.Drawing.Size(425,450)
 $ButtonB.Size = New-Object System.Drawing.Size(81,32)
 $ButtonB.Text = "Sales"
 $ButtonB.Add_Click({
-    $i=11
-    $dataGridView.DataSource = $null
-    $tableData = New-Object System.Collections.ArrayList
-    $script:ou=$($accou[$i])
-    Allrows
-    $tableData.AddRange($row1)
-    $dataGridView.DataSource=$tableData})
+    $script:i=11
+    SetupDataWithIndex
+})
 
 $Form.Controls.Add($dataGridView)
 $Form.Controls.Add($Button)
