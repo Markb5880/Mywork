@@ -87,7 +87,7 @@ $Button1.Text = "Engineering"
 $Button1.Add_Click({
     $script:i=1
     SetupDataWithIndex	
-})
+    })
 
 $Button2 = New-Object System.Windows.Forms.Button
 $Button2.Location = New-Object System.Drawing.Size(135,415)
@@ -96,7 +96,7 @@ $Button2.Text = "Execs"
 $Button2.Add_Click({
     $script:i=2
     SetupDataWithIndex    
-})
+    })
 
 $Button3 = New-Object System.Windows.Forms.Button
 $Button3.Location = New-Object System.Drawing.Size(144,450)
@@ -105,7 +105,7 @@ $Button3.Text = "Facilities"
 $Button3.Add_Click({
     $script:i=3
     SetupDataWithIndex
-})
+    })
 
 $Button4 = New-Object System.Windows.Forms.Button
 $Button4.Location = New-Object System.Drawing.Size(206,415)
@@ -114,7 +114,7 @@ $Button4.Text = "HR"
 $Button4.Add_Click({
     $script:i=4
     SetupDataWithIndex
-})
+    })
 
 $Button5 = New-Object System.Windows.Forms.Button
 $Button5.Location = New-Object System.Drawing.Size(215,450)
@@ -123,7 +123,7 @@ $Button5.Text = "IT"
 $Button5.Add_Click({
     $script:i=5
     SetupDataWithIndex
-})
+    })
 
 $Button6 = New-Object System.Windows.Forms.Button
 $Button6.Location = New-Object System.Drawing.Size(277,415)
@@ -132,7 +132,7 @@ $Button6.Text = "MS"
 $Button6.Add_Click({
     $script:i=6
     SetupDataWithIndex
-})
+    })
 
 $Button7 = New-Object System.Windows.Forms.Button
 $Button7.Location = New-Object System.Drawing.Size(277,450)
@@ -141,7 +141,7 @@ $Button7.Text = "New Business"
 $Button7.Add_Click({
     $script:i=7
     SetupDataWithIndex
-})
+    })
 
 $Button8 = New-Object System.Windows.Forms.Button
 $Button8.Location = New-Object System.Drawing.Size(349,415)
@@ -150,7 +150,7 @@ $Button8.Text = "Procurement"
 $Button8.Add_Click({
     $script:i=8
     SetupDataWithIndex
-})
+    })
 
 $Button9 = New-Object System.Windows.Forms.Button
 $Button9.Location = New-Object System.Drawing.Size(425,415)
@@ -159,7 +159,7 @@ $Button9.Text = "Production"
 $Button9.Add_Click({
     $script:i=9
     SetupDataWithIndex
-})
+    })
 
 $ButtonA = New-Object System.Windows.Forms.Button
 $ButtonA.Location = New-Object System.Drawing.Size(349,450)
@@ -168,7 +168,7 @@ $ButtonA.Text = "QA"
 $ButtonA.Add_Click({
     $script:i=10
     SetupDataWithIndex
-})
+    })
 
 $ButtonB = New-Object System.Windows.Forms.Button
 $ButtonB.Location = New-Object System.Drawing.Size(425,450)
@@ -177,7 +177,7 @@ $ButtonB.Text = "Sales"
 $ButtonB.Add_Click({
     $script:i=11
     SetupDataWithIndex
-})
+    })
 
 $Form.Controls.Add($dataGridView)
 $Form.Controls.Add($Button)
