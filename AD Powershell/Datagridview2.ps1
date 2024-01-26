@@ -1,13 +1,14 @@
 function test1 {
     test
 }
+function Allrows {
+    $script:row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$ou,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name    
+}
 function test {
 Add-Type -AssemblyName "System.Windows.Forms"
 Add-Type -AssemblyName "System.Drawing"
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Collections
-
-$row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | Select-Object cn,company,department,lastlogondate,passwordlastset,enabled
 
 $form = New-Object System.Windows.Forms.Form
 $form.Size = New-Object System.Drawing.Size(650,550)
@@ -20,6 +21,7 @@ $ButtonX.Text = "All"
 $ButtonX.Add_Click({
     $dataGridView.DataSource = $null
     $tableData = New-Object System.Collections.ArrayList
+    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | Select-Object cn,company,department,lastlogondate,passwordlastset,enabled | Sort-Object cn
     $tableData.AddRange($row1)
 	$dataGridView.DataSource=$tableData})
 
@@ -53,8 +55,9 @@ $Button.Text = "Accounts"
 $Button.Add_Click({
     $i=0
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -65,8 +68,9 @@ $Button1.Text = "Engineering"
 $Button1.Add_Click({
     $i=1
 	$dataGridView.DataSource = $null
-	$row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name
 	$tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
 	$tableData.AddRange($row1)
 	$dataGridView.DataSource=$tableData})
 
@@ -77,8 +81,9 @@ $Button2.Text = "Execs"
 $Button2.Add_Click({
     $i=2
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -89,8 +94,9 @@ $Button3.Text = "Facilities"
 $Button3.Add_Click({
     $i=3
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -101,8 +107,9 @@ $Button4.Text = "HR"
 $Button4.Add_Click({
     $i=4
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -113,8 +120,9 @@ $Button5.Text = "IT"
 $Button5.Add_Click({
     $i=5
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -125,8 +133,9 @@ $Button6.Text = "MS"
 $Button6.Add_Click({
     $i=6
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -135,12 +144,13 @@ $Button7.Location = New-Object System.Drawing.Size(277,450)
 $Button7.Size = New-Object System.Drawing.Size(71,32)
 $Button7.Text = "New Business"
 $Button7.Add_Click({
-        $i=7
-        $dataGridView.DataSource = $null
-        $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
-        $tableData = New-Object System.Collections.ArrayList
-        $tableData.AddRange($row1)
-        $dataGridView.DataSource=$tableData})
+    $i=7
+    $dataGridView.DataSource = $null
+    $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
+    $tableData.AddRange($row1)
+    $dataGridView.DataSource=$tableData})
 
 $Button8 = New-Object System.Windows.Forms.Button
 $Button8.Location = New-Object System.Drawing.Size(349,415)
@@ -149,8 +159,9 @@ $Button8.Text = "Procurement"
 $Button8.Add_Click({
     $i=8
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -161,8 +172,9 @@ $Button9.Text = "Production"
 $Button9.Add_Click({
     $i=9
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -173,8 +185,9 @@ $ButtonA.Text = "QA"
 $ButtonA.Add_Click({
     $i=10
     $dataGridView.DataSource = $null
-    $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
     $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
     $tableData.AddRange($row1)
     $dataGridView.DataSource=$tableData})
 
@@ -183,12 +196,13 @@ $ButtonB.Location = New-Object System.Drawing.Size(425,450)
 $ButtonB.Size = New-Object System.Drawing.Size(81,32)
 $ButtonB.Text = "Sales"
 $ButtonB.Add_Click({
-        $i=11
-        $dataGridView.DataSource = $null
-        $row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$($accou[$i]),ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled
-        $tableData = New-Object System.Collections.ArrayList
-        $tableData.AddRange($row1)
-        $dataGridView.DataSource=$tableData})
+    $i=11
+    $dataGridView.DataSource = $null
+    $tableData = New-Object System.Collections.ArrayList
+    $script:ou=$($accou[$i])
+    Allrows
+    $tableData.AddRange($row1)
+    $dataGridView.DataSource=$tableData})
 
 $Form.Controls.Add($dataGridView)
 $Form.Controls.Add($Button)
