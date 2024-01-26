@@ -1,3 +1,18 @@
+<#
+Mark Baker 16th January 2024
+Functions: test1 and test look after the flow of the form code
+           Allrows look after the lower level child OU's where the usernames are
+           SetupDataWithIndex looks after clearing the datasource Var row1 and re-initialising the arraylist
+           Sets the relative variables and indexes and re-applies the new row1 data called from the Allrows function and points datasource back to the datatable fir viewing
+           with Variable $DataGridView
+Buttons:   All the buttons set an index and call the function SetupDatawithIndex, so the data changes on each refresh
+Here String: $ouacc sets the accountname and the index is used to insert the correct string as part of the Searchbase parameter
+
+The $script:{Variable} sets the scope in which the variable is used, else the functions would not be able to see it. $global can be used if linking scripts together.
+
+This took me 3 larger revisions to get it to this stage, You could amend this code to pick out computers & their properties from relevant OU's
+maybe separately or as part of a larger script.
+#>
 function test1 {
     test
 }
