@@ -190,7 +190,7 @@ cls
     $TextBox2.Size = New-Object System.Drawing.Size(180,200)
     $TextBox2.Height = 180
 # Load the items and sort the list in Ascending order.
-    $computers=get-adcomputer -filter * -SearchBase "OU=Quarantine,DC=F1,DC=TSTECHUK,DC=LOCAL" | where {$_.enabled -eq $true } | select name |sort name
+    $computers=get-adcomputer -filter * -properties name -SearchBase "cn=Computers,DC=smallhome,DC=local" | where {$_.enabled -eq $true } | select name |sort name
     $computers.name | ForEach-Object {[void]$Textbox2.Items.Add($_)}
 
 # Current PC Count
@@ -209,12 +209,12 @@ cls
     $Textbox5.text=$body5
 
 # Display an Image on a form
-    $image = [System.Drawing.Image]::Fromfile('\\netapp-2-a\public\Powershell TSTech Logos\TSTechLogo-300x114-1-2.png')     
+    $image = [System.Drawing.Image]::Fromfile("C:\\Users\\administrator\\Pictures\\Screenshots\\adlogo.jpg",$true)     
     $pictureBox = new-object Windows.Forms.PictureBox  #--instantiates a PictureBox
     $pictureBox.Image=$image
     $pictureBox.Location = New-object System.Drawing.Size(220,5)
-    $pictureBox.Width =  $image.Size.Width
-    $pictureBox.Height =  $image.Size.Height
+    $pictureBox.Width =  $image.Size.Width/2
+    $pictureBox.Height =  $image.Size.Height/3
     $pictureBox.Image = $image
     $pictureBox.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom
     
