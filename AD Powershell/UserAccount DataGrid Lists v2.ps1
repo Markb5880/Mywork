@@ -1,5 +1,6 @@
 <#
 Mark Baker 26th January 2024
+Amendment 24th February - Added a Save Datagrid option
 Functions: test1 and test look after the flow of the form code
            Allrows look after the lower level child OU's where the usernames are
            SetupDataWithIndex looks after clearing the datasource Var row1 and re-initialising the arraylist
@@ -35,6 +36,8 @@ Add-Type -AssemblyName "System.Windows.Forms"
 Add-Type -AssemblyName "System.Drawing"
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Collections
+$SaveAs1=New-Object System.Windows.Forms.SaveFileDialog
+
 
 $form = New-Object System.Windows.Forms.Form
 $form.Size = New-Object System.Drawing.Size(650,550)
@@ -182,14 +185,24 @@ $ButtonB.Add_Click({
     $script:i=11
     SetupDataWithIndex
     })
-    $ButtonY = New-Object System.Windows.Forms.Button
-    $ButtonY.Location = New-Object System.Drawing.Size(1,415)
-    $ButtonY.Size = New-Object System.Drawing.Size(70,32)
-    $ButtonY.Text = "Export"
-    $Form.Controls.Add($ButtonY) 
-    $ButtonY.Add_Click({    
-    $row1 | Export-Csv C:\Row2.csv
-     })
+$ButtonY = New-Object System.Windows.Forms.Button
+$ButtonY.Location = New-Object System.Drawing.Size(1,415)
+$ButtonY.Size = New-Object System.Drawing.Size(70,32)
+$ButtonY.Text = "Export"
+$Form.Controls.Add($ButtonY) 
+$ButtonY.Add_Click({
+# Save/Export routine    
+$SaveAs1.Filter = "CSV Files (*.csv)|*.csv|Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+$SaveAs1.SupportMultiDottedExtensions = $true;
+$SaveAs1.InitialDirectory = "C:\"
+$SaveAs1.title="User DataGridView Save"
+# This is where the actual save takes place!
+
+if($SaveAs1.ShowDialog() -eq 'Ok'){
+    $row1 | Export-Csv $($SaveAs1.filename) -NoTypeInformation
+}    
+
+})
 
 $Form.Controls.Add($dataGridView)
 $Form.Controls.Add($Button)
