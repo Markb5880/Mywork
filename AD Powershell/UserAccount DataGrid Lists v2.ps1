@@ -20,9 +20,6 @@ function test1 {
 function Allrows {
     $script:row1 = Get-ADUser -Filter * -Properties * -SearchBase "ou=$ou,ou=administration,ou=f1,ou=ts tech users,dc=smallhome,dc=local" | select-object name,lastlogondate,whencreated,passwordlastset,enabled | Sort-Object name    
 }
-function ExportData {
-  
-}
 function SetupDataWithIndex {
     $dataGridView.DataSource = $null
     $tableData = New-Object System.Collections.ArrayList
